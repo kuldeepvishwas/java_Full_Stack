@@ -24,7 +24,10 @@ public class UserController {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
-
+    @GetMapping("/page")
+    public Page<User> getUsers(Pageable pageable){
+    return userRepository.findAll(pageable);
+    }
     @GetMapping
     public List<User> getAllUser(){
         return userRepository.findAll();
